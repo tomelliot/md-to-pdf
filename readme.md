@@ -23,10 +23,10 @@
 
 ## Installation
 
-**Option 1: NPM**
+**Option 1: Bun**
 
 ```sh
-npm i -g md-to-pdf
+bun i -g md-to-pdf
 ```
 
 **Option 2: Git**
@@ -36,14 +36,14 @@ If you want to have your own copy to hack around with, clone the repository inst
 ```sh
 git clone "https://github.com/simonhaenisch/md-to-pdf"
 cd md-to-pdf
-npm link # or npm i -g
+bun link # or bun i -g
 ```
 
-Then the commands `md-to-pdf` and `md2pdf` (as a shorthand) will be globally available in your cli. Use `npm start` to start the TypeScript compiler (`tsc`) in watch mode.
+Then the commands `md-to-pdf` and `md2pdf` (as a shorthand) will be globally available in your cli. Use `bun start` to start the TypeScript compiler (`tsc`) in watch mode.
 
 ## Update
 
-If you installed via npm, run `npm i -g md-to-pdf@latest` in your CLI. If you cloned this repository instead, you can simply do a `git pull` to get the latest changes from the master branch, then do `npm run build` to re-build. Unless there have been changes to packages (i. e. `package-lock.json`), you don't need to re-install the package (because NPM 5+ uses symlinks, at least on Unix systems).
+If you installed via bun, run `bun i -g md-to-pdf@latest` in your CLI. If you cloned this repository instead, you can simply do a `git pull` to get the latest changes from the master branch, then do `bun run build` to re-build. Unless there have been changes to packages (i. e. `bun.lock`), you don't need to re-install the package (because globally linked packages use symlinks, at least on Unix systems).
 
 ## Usage
 
@@ -283,7 +283,7 @@ If you intend to use this tool to convert user-provided markdown content, please
 
 ## Customization/Development
 
-After cloning and linking/installing globally (`npm link`), just run the transpiler in watch mode (`npm start`). Then you can start making changes to the files and Typescript will transpile them on save. NPM 5+ uses symlinks for locally installed global packages, so all changes are reflected immediately without needing to re-install the package (except when there have been changes to required packages, then re-install using `npm i`). This also means that you can just do a `git pull` to get the latest version onto your machine.
+After cloning and linking/installing globally (`bun link`), just run the transpiler in watch mode (`bun start`). Then you can start making changes to the files and Typescript will transpile them on save. Globally linked packages use symlinks, so all changes are reflected immediately without needing to re-install the package (except when there have been changes to required packages, then re-install using `bun i`). This also means that you can just do a `git pull` to get the latest version onto your machine.
 
 Ideas, feature requests and PRs are welcome. Just keep it simple! 🤓
 

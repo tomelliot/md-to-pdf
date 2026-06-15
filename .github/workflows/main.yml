@@ -7,13 +7,14 @@ on:
       - 'src/**'
       - 'markdown.css'
       - 'package*.json'
+      - 'bun.lock'
 
 jobs:
   build:
     strategy:
       fail-fast: false
       matrix:
-        node: [16, 18]
+        node: [22, 24]
         os: ['ubuntu-latest', 'windows-latest', 'macOS-latest']
 
     name: Node ${{ matrix.node }} on ${{ matrix.os }}
@@ -27,22 +28,25 @@ jobs:
         with:
           node-version: ${{ matrix.node }}.x
 
+      - name: Use Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: install
-        run: npm install
+        run: bun install
 
       - name: lint
-        run: npx xo
+        run: bunx xo
         if: matrix.os == 'ubuntu-latest'
 
       - name: build
-        run: npm run build
+        run: bun run build
 
       - name: test lib
-        run: npx nyc ava src/test/lib.spec.ts --timeout=1m
+        run: bunx nyc ava src/test/lib.spec.ts --timeout=1m
 
       - name: test api
-        run: npx ava src/test/api.spec.ts --timeout=1m
+        run: bunx ava src/test/api.spec.ts --timeout=1m
 
       - name: test cli
-        run: npx ava src/test/cli.spec.ts --timeout=2m
+        run: bunx ava src/test/cli.spec.ts --timeout=2m
         if: matrix.os != 'windows-latest' # because they just time out ¯\_(ツ)_/¯
